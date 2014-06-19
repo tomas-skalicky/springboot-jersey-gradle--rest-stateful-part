@@ -38,7 +38,7 @@ public class StatelessTodos implements Serializable {
 		Preconditions.checkNotNull(todo, "TODO which is to be added cannot be null");
 		Preconditions.checkNotNull(todo.getId(), "ID of TODO which is to be added needs to be given");
 
-		if (todos.stream().filter(t -> t.getId().equals(todo.getId())).findFirst().isPresent()) {
+		if (todos.stream().anyMatch(t -> t.getId().equals(todo.getId()))) {
 			throw new IllegalArgumentException("TODO with the same ID is already present");
 		}
 
