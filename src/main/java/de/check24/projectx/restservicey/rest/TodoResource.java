@@ -3,9 +3,9 @@ package de.check24.projectx.restservicey.rest;
 import java.util.Iterator;
 
 import javax.inject.Inject;
-import javax.ws.rs.PathParam;
 
 import org.springframework.context.annotation.Scope;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -107,18 +107,16 @@ public class TodoResource {
 		return statelessTodos.getAll();
 	}
 
-	@RequestMapping(value = "/update/{id}/stateful", method = RequestMethod.PUT, consumes = "application/json", produces = "application/json")
-	public Iterator<Todo> updateStatefulTodo(@PathParam("id") Integer todoId,
-			@RequestBody Todo todoToBeUpdated) {
+	@RequestMapping(value = "/update/{todoId}/stateful", method = RequestMethod.PUT, consumes = "application/json", produces = "application/json")
+	public Iterator<Todo> updateStatefulTodo(@PathVariable Integer todoId, @RequestBody Todo todoToBeUpdated) {
 		Preconditions.checkNotNull(statefulTodos, "Collection of TODOs cannot be null");
 
 		statefulTodos.update(todoId, todoToBeUpdated);
 		return statefulTodos.getAll();
 	}
 
-	@RequestMapping(value = "/update/{id}/stateless", method = RequestMethod.PUT, consumes = "application/json", produces = "application/json")
-	public Iterator<Todo> updateStatelessTodo(@PathParam("id") Integer todoId,
-			@RequestBody Todo todoToBeUpdated) {
+	@RequestMapping(value = "/update/{todoId}/stateless", method = RequestMethod.PUT, consumes = "application/json", produces = "application/json")
+	public Iterator<Todo> updateStatelessTodo(@PathVariable Integer todoId, @RequestBody Todo todoToBeUpdated) {
 		Preconditions.checkNotNull(statelessTodos, "Collection of TODOs cannot be null");
 
 		statelessTodos.update(todoId, todoToBeUpdated);
