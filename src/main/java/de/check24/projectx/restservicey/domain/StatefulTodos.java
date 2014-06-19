@@ -49,7 +49,7 @@ public class StatefulTodos implements Serializable {
 	public void update(Integer todoId, Todo todoToBeUpdated) {
 		Preconditions.checkNotNull(todoId, "ID of TODO which is to be updated needs to be given");
 		Preconditions.checkNotNull(todoToBeUpdated, "TODO which is to be updated cannot be null");
-		Preconditions.checkArgument(todoToBeUpdated.getId().equals(todoId),
+		Preconditions.checkArgument(!todoToBeUpdated.getId().equals(todoId),
 				"ID argument and ID property of TODO need to be equal");
 
 		// Replaces the old todo with the new one.
