@@ -1,0 +1,33 @@
+#####
+# Compiled sources
+#####
+*.class
+bin/
+build/
+target/
+
+
+
+#####
+# Some of the eclipse folders and files
+#####
+.metadata/
+Servers/
+.project
+.classpath
+.settings/
+
+
+
+#####
+# Gradle
+#####
+.gradle/
+
+
+
+#####
+# Test files
+#####
+cookies.txt
+

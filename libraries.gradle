@@ -1,0 +1,24 @@
+ext {
+	springVersion = '4.0.5.RELEASE'
+	jerseyVersion = '2.8'
+
+	libraries = [
+		// Spring Boot
+		spring_boot_starter_actuator: "org.springframework.boot:spring-boot-starter-actuator:${springBootVersion}",
+		spring_boot_starter_web: "org.springframework.boot:spring-boot-starter-web:${springBootVersion}",
+		spring_boot_starter_test: "org.springframework.boot:spring-boot-starter-test:${springBootVersion}",
+
+		// TestNG
+		testng: 'org.testng:testng:6.8.8',
+
+		// Jersey
+		jersey_container_servlet: "org.glassfish.jersey.containers:jersey-container-servlet:${jerseyVersion}",
+		jersey_spring3: "org.glassfish.jersey.ext:jersey-spring3:${jerseyVersion}",
+    	
+    	// Logging
+    	log4j: 'log4j:log4j:1.2.17',
+    	
+    	// Injection
+    	javax_inject: 'javax.inject:javax.inject:1'
+	]
+}

@@ -1,0 +1,86 @@
+buildscript {
+	ext { springBootVersion = '1.0.2.RELEASE' }
+	repositories {
+		mavenCentral()
+		jcenter()
+	}
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+		
+		classpath 'be.filipblondeel.gradle:gradle-gulp-plugin:0.1'
+	}
+}
+
+task wrapper(type: Wrapper) { gradleVersion = '2.0-rc-1' }
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'idea'
+apply plugin: 'spring-boot'
+apply from: "${rootDir}/libraries.gradle"
+apply plugin: 'gulp'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+jar {
+	baseName = 'springboot-jersey-gradle--rest-stateful-part'
+	version = '0.0.1-SNAPSHOT'
+}
+
+repositories { mavenCentral() }
+
+dependencies {
+
+	// Spring Boot
+	compile( libraries.spring_boot_starter_actuator )
+	compile( libraries.spring_boot_starter_web )
+	testCompile( libraries.spring_boot_starter_test )
+
+	compile 'org.springframework:spring-context:4.0.4.RELEASE'
+
+	// Jersey
+	compile( libraries.jersey_container_servlet )
+	compile( libraries.jersey_spring3 )
+
+	// TestNG
+	testCompile( libraries.testng )
+
+	// Injection
+	compile( libraries.javax_inject )
+    
+    // Logging
+    compile( libraries.log4j )
+}
+
+test {
+	// enable TestNG support (default is JUnit)
+	useTestNG()
+
+	// listen to events in the test execution lifecycle
+	beforeTest { descriptor ->
+		logger.lifecycle("Running test: ${descriptor.className}.${descriptor.name}")
+	}
+
+	// listen to standard out and standard error of the test JVM(s)
+	afterTest { descriptor, event ->
+		logger.lifecycle("${event.resultType}: test ${descriptor.className}.${descriptor.name} executed")
+	}
+}
+
+node {
+    // Version of node to use.
+    version = '0.10.22'
+
+    // Enabled the automatic download. False is the default (for now).
+    download = true
+}
+
+// makes sure on each build that gulp is installed
+//gulp_default.dependsOn 'installGulp'
+
+// processes your package.json before running gulp build
+//gulp_default.dependsOn 'npmInstall'
+
+// runs "gulp default" as part of your gradle build
+//build.dependsOn gulp_default
