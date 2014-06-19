@@ -107,7 +107,7 @@ public class TodoResource {
 		return statelessTodos.getAll();
 	}
 
-	@RequestMapping(value = "/update/{id}/stateful", method = RequestMethod.PUT, consumes = "application/json", produces = "application/json")
+	@RequestMapping(value = "/update/{todoId}/stateful", method = RequestMethod.PUT, consumes = "application/json", produces = "application/json")
 	public Iterator<Todo> updateStatefulTodo(@RequestParam Integer todoId, @RequestBody Todo todoToBeUpdated) {
 		Preconditions.checkNotNull(statefulTodos, "Collection of TODOs cannot be null");
 
@@ -115,7 +115,7 @@ public class TodoResource {
 		return statefulTodos.getAll();
 	}
 
-	@RequestMapping(value = "/update/{id}/stateless", method = RequestMethod.PUT, consumes = "application/json", produces = "application/json")
+	@RequestMapping(value = "/update/{todoId}/stateless", method = RequestMethod.PUT, consumes = "application/json", produces = "application/json")
 	public Iterator<Todo> updateStatelessTodo(@RequestParam Integer todoId, @RequestBody Todo todoToBeUpdated) {
 		Preconditions.checkNotNull(statelessTodos, "Collection of TODOs cannot be null");
 
