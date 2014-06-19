@@ -122,4 +122,20 @@ public class TodoResource {
 		statelessTodos.update(todoId, todoToBeUpdated);
 		return statelessTodos.getAll();
 	}
+
+	@RequestMapping(value = "/delete/{todoId}/stateful", method = RequestMethod.PUT, consumes = "application/json", produces = "application/json")
+	public Iterator<Todo> deleteStatefulTodo(@PathVariable Integer todoId) {
+		Preconditions.checkNotNull(statefulTodos, "Collection of TODOs cannot be null");
+
+		statefulTodos.delete(todoId);
+		return statefulTodos.getAll();
+	}
+
+	@RequestMapping(value = "/delete/{todoId}/stateless", method = RequestMethod.PUT, consumes = "application/json", produces = "application/json")
+	public Iterator<Todo> deleteStatelessTodo(@PathVariable Integer todoId) {
+		Preconditions.checkNotNull(statelessTodos, "Collection of TODOs cannot be null");
+
+		statelessTodos.delete(todoId);
+		return statelessTodos.getAll();
+	}
 }

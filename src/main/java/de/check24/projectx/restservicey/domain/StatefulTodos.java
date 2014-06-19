@@ -59,4 +59,10 @@ public class StatefulTodos implements Serializable {
 			}
 		}
 	}
+
+	public void delete(Integer todoId) {
+		Preconditions.checkNotNull(todoId, "ID of TODO which is to be updated needs to be given");
+
+		// TODO
+	}
 }
