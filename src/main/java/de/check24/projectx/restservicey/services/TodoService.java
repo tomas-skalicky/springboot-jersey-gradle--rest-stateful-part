@@ -14,7 +14,10 @@ import de.check24.projectx.restservicey.domain.Todo;
  */
 public interface TodoService {
 
-	Iterator<Todo> getAllExisting();
+	/**
+	 * @return All existing {@link Todo}s
+	 */
+	Iterator<Todo> getAll();
 
 	Iterator<Todo> getByText(String text);
 }

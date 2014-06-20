@@ -9,6 +9,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import de.check24.projectx.restservicey.domain.Todo;
+import de.check24.projectx.restservicey.domain.builder.TodoBuilder;
 import de.check24.projectx.restservicey.services.TodoService;
 
 /**
@@ -23,13 +24,13 @@ import de.check24.projectx.restservicey.services.TodoService;
 public class StatelessTodoServiceImpl implements TodoService {
 
 	private final Todo[] todos = {
-			new Todo.Builder().withId(1).withText("Todo1").withDueDate(OffsetDateTime.now().plusHours(1))
-					.build(),
-			new Todo.Builder().withId(2).withText("Todo2").withDueDate(OffsetDateTime.now().plusDays(2))
-					.build() };
+			TodoBuilder.aTodo().withId(1).withText("Todo1").withDueDate(OffsetDateTime.now().plusHours(1))
+			.build(),
+			TodoBuilder.aTodo().withId(2).withText("Todo2").withDueDate(OffsetDateTime.now().plusDays(2))
+			.build() };
 
 	@Override
-	public Iterator<Todo> getAllExisting() {
+	public Iterator<Todo> getAll() {
 		return Arrays.asList(todos).iterator();
 	}
 

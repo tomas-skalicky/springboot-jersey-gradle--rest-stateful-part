@@ -3,8 +3,6 @@ package de.check24.projectx.restservicey.domain;
 import java.io.Serializable;
 import java.time.OffsetDateTime;
 
-import javax.annotation.Generated;
-
 /**
  * @author Tomas Skalicky
  *         <p>
@@ -15,14 +13,11 @@ import javax.annotation.Generated;
  */
 public class Todo implements Serializable {
 
-	private static final long serialVersionUID = -8998514761064670214L;
+	private static final long serialVersionUID = 8294345087513319038L;
 
 	private Integer id;
 	private String text;
 	private OffsetDateTime dueDate;
-
-	public Todo() {
-	}
 
 	public Integer getId() {
 		return id;
@@ -50,41 +45,6 @@ public class Todo implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Todo [text=" + text + ", dueDate=" + dueDate + "]";
-	}
-
-	@Generated("by Bob the Builder")
-	private Todo(Builder builder) {
-
-		id = builder.id;
-		text = builder.text;
-		dueDate = builder.dueDate;
-	}
-
-	@Generated("by Bob the Builder")
-	public static class Builder {
-
-		private Integer id;
-		private String text;
-		private OffsetDateTime dueDate;
-
-		public Builder withId(Integer id) {
-			this.id = id;
-			return this;
-		}
-
-		public Builder withText(String text) {
-			this.text = text;
-			return this;
-		}
-
-		public Builder withDueDate(OffsetDateTime dueDate) {
-			this.dueDate = dueDate;
-			return this;
-		}
-
-		public Todo build() {
-			return new Todo(this);
-		}
+		return "Todo [id=" + id + ", text=" + text + ", dueDate=" + dueDate + "]";
 	}
 }

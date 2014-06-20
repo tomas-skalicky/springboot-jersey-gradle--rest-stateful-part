@@ -35,7 +35,7 @@ public class StatelessTodos implements Serializable {
 		return todos.iterator();
 	}
 
-	public void add(Todo todo) {
+	public boolean add(Todo todo) {
 		Preconditions.checkNotNull(todo, "TODO which is to be added cannot be null");
 		Preconditions.checkNotNull(todo.getId(), "ID of TODO which is to be added needs to be given");
 
@@ -44,9 +44,13 @@ public class StatelessTodos implements Serializable {
 		}
 
 		todos.add(todo);
+		return true;
 	}
 
-	public void update(Integer todoId, Todo todoToBeUpdated) {
+	/**
+	 * @return <code>true</code> if a {@link Todo} with the given ID has been updated; <code>false</code> otherwise.
+	 */
+	public boolean update(Integer todoId, Todo todoToBeUpdated) {
 		Preconditions.checkNotNull(todoId, "ID of TODO which is to be updated needs to be given");
 		Preconditions.checkNotNull(todoToBeUpdated, "TODO which is to be updated cannot be null");
 		Preconditions.checkArgument(todoToBeUpdated.getId().equals(todoId),
@@ -56,7 +60,18 @@ public class StatelessTodos implements Serializable {
 		for (int todoIndex = 0; todoIndex < todos.size(); ++todoIndex) {
 			if (todos.get(todoIndex).getId().equals(todoId)) {
 				todos.set(todoIndex, todoToBeUpdated);
+				return true;
 			}
 		}
+		return false;
+	}
+
+	/**
+	 * @return <code>true</code> if any {@link Todo} has been removed; <code>false</code> otherwise.
+	 */
+	public boolean remove(Integer todoId) {
+		Preconditions.checkNotNull(todoId, "ID of TODO which is to be removed needs to be given");
+
+		return todos.removeIf(t -> t.getId().equals(todoId));
 	}
 }
