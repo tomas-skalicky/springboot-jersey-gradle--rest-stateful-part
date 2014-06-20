@@ -9,13 +9,21 @@ target/
 
 
 #####
-# Some of the eclipse folders and files
+# Eclipse IDE
 #####
 .metadata/
 Servers/
 .project
 .classpath
 .settings/
+
+
+
+#####
+# IntelliJ
+#####
+.idea/
+springboot-jersey-gradle--rest-stateful-part.iml
 
 
 
@@ -30,4 +38,3 @@ Servers/
 # Test files
 #####
 cookies.txt
-
