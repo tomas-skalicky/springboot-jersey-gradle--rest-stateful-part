@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import org.apache.log4j.Logger;
 import org.springframework.context.annotation.Scope;
 import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.stereotype.Component;
@@ -28,7 +29,7 @@ public class StatefulTodos implements Serializable {
 	private final List<Todo> todos = new ArrayList<Todo>();
 
 	public StatefulTodos() {
-		System.err.println("new instance of StatefulTodos");
+		Logger.getLogger(StatelessTodos.class).debug("new instance of StatefulTodos");
 	}
 
 	public Iterator<Todo> getAll() {

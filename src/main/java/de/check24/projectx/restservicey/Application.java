@@ -2,6 +2,7 @@ package de.check24.projectx.restservicey;
 
 import java.util.Arrays;
 
+import org.apache.log4j.Logger;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.ApplicationContext;
@@ -29,13 +30,15 @@ public class Application {
 	}
 
 	private static void printOutProvidedBeans(ApplicationContext context) {
+		
+		final Logger logger = Logger.getLogger(Application.class);
 
-		System.out.println("Let's inspect the beans provided by Spring Boot:");
+		logger.info("Let's inspect the beans provided by Spring Boot:");
 
 		String[] beanNames = context.getBeanDefinitionNames();
 		Arrays.sort(beanNames);
 		for (String beanName : beanNames) {
-			System.out.println(beanName);// + " - class: " + context.getBean(beanName).getClass());
+			logger.info(beanName);
 		}
 	}
 
